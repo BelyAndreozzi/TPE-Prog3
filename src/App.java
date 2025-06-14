@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) {
         String rutaArchivo = "src/config.txt";
         int piezasTotales = 0;
-        List<Maquina> maquinas = new ArrayList<>();
+        ArrayList<Maquina> maquinas = new ArrayList<>();
         SolucionBacktracking sBacktracking = new SolucionBacktracking();
         SolucionGreedy sGreedy = new SolucionGreedy();
 
@@ -36,37 +36,32 @@ public class App {
             System.err.println("Error al convertir a número: " + e.getMessage());
         }
 
-        System.out.println("Piezas totales a producir: " + piezasTotales);
-        for (Maquina m : maquinas) {
-            System.out.println(m);
+        
+        ArrayList<Maquina> resultadoBacktracking = sBacktracking.buscarSolucion(maquinas, piezasTotales);
+        if (resultadoBacktracking.size() > 0) {
+            System.out.println("Mejor secuencia encontrada con Backtracking:");
+            System.out.print("[ ");
+            for (Maquina m : resultadoBacktracking) {
+                System.out.print(m + " ");
+            }
+            System.out.println(']');
+            System.out.println("Metricas:");
+            System.out.println("Cantidad de estados generados: " + sBacktracking.getCantidadEstados());
+            System.out.println("Cantidad piezas producidas: " + piezasTotales);
+            System.out.println("Cantidad de puestas en funcionamiento: " + resultadoBacktracking.size());
+        } else {
+            System.out.println("No se encontró una combinación válida.");
         }
 
-        //sBacktracking.buscarSolucion(maquinas)
-        //sGreedy.buscarSolucion(maquinas)
-        //System.out.println(sBacktracking.getSolucion())
-        //System.out.println(sGreedy.getSolucion())
-    
+        //ArrayList<Maquina> resultadoGreedy = sGreedy.buscarSolucion(maquinas);
+
+        /* 
+            Solución obtenida: secuencia de máquinas.
+            Solución obtenida: cantidad de piezas producidas y cantidad de puestas en funcionamiento
+            requeridas.
+            Métrica para analizar el costo de la solución (cantidad de estados generados)
+        */
     }
 
-    /*
-     * <<Breve explicación de la estrategia de resolución. Por ejemplo:
-     * - Cómo se genera el árbol de exploración.
-     * - Cuáles son los estados finales y estados solución.
-     * - Posibles podas.
-     * - etc.>>
-     */
-
-    //public Solucion backtracking() {}
-
-
-
-    /*
-     * <<Breve explicación de la estrategia de resolución. Por ejemplo:
-     * - Cuáles son los candidatos.
-     * - Estrategia de selección de candidatos.
-     * - Consideraciones respecto a encontrar o no solución.
-     * - etc.>>
-     */
-
-    //public Solucion greedy() {}
 }
+
