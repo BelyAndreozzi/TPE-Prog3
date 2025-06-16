@@ -1,18 +1,11 @@
-## Getting Started
+## Trabajo Práctico Especial
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+En este proyecto se pone en práctica la utilización de los algoritmos de búsqueda Backtracking y Greedy.
 
-## Folder Structure
+## Integrantes
 
-The workspace contains two folders by default, where:
+- Andreozzi, Fiamma Belén
+- Islas Pedro
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+> Proyecto para la materia de Programación III de la Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas de la UNICEN.

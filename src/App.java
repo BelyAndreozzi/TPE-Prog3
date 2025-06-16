@@ -12,9 +12,8 @@ public class App {
         SolucionBacktracking sBacktracking = new SolucionBacktracking();
         SolucionGreedy sGreedy = new SolucionGreedy();
 
-
         try (Scanner scanner = new Scanner(new File(rutaArchivo))) {
-            
+
             if (scanner.hasNextLine()) {
                 piezasTotales = Integer.parseInt(scanner.nextLine());
             }
@@ -36,32 +35,58 @@ public class App {
             System.err.println("Error al convertir a número: " + e.getMessage());
         }
 
-        
+
         ArrayList<Maquina> resultadoBacktracking = sBacktracking.buscarSolucion(maquinas, piezasTotales);
         if (resultadoBacktracking.size() > 0) {
-            System.out.println("Mejor secuencia encontrada con Backtracking:");
+            System.out.println("╔══════════════════════════════════════════════╗");
+            System.out.println("║  Mejor secuencia encontrada con Backtracking ║");
+            System.out.println("╚══════════════════════════════════════════════╝");
+
+            System.out.print("Secuencia: ");
             System.out.print("[ ");
-            for (Maquina m : resultadoBacktracking) {
-                System.out.print(m + " ");
+            for (int i = 0; i < resultadoBacktracking.size(); i++) {
+                System.out.print(resultadoBacktracking.get(i));
+                if (i < resultadoBacktracking.size() - 1) {
+                    System.out.print(" -> ");
+                }
             }
-            System.out.println(']');
+            System.out.println(" ]");
+
             System.out.println("Metricas:");
-            System.out.println("Cantidad de estados generados: " + sBacktracking.getCantidadEstados());
-            System.out.println("Cantidad piezas producidas: " + piezasTotales);
-            System.out.println("Cantidad de puestas en funcionamiento: " + resultadoBacktracking.size());
+            System.out.println("  - Cantidad de estados generados: "+
+                    sBacktracking.getCantidadEstados());
+            System.out.println("  - Cantidad de piezas producidas: " + piezasTotales);
+            System.out.println("  - Cantidad de puestas en funcionamiento: " +
+                    resultadoBacktracking.size());
         } else {
-            System.out.println("No se encontró una combinación válida.");
+            System.out.println("X No se encontró una combinación válida para Backtracking.");
         }
 
-        //ArrayList<Maquina> resultadoGreedy = sGreedy.buscarSolucion(maquinas);
+        ArrayList<Maquina> resultadoGreedy = sGreedy.buscarSolucion(maquinas, piezasTotales);
 
-        /* 
-            Solución obtenida: secuencia de máquinas.
-            Solución obtenida: cantidad de piezas producidas y cantidad de puestas en funcionamiento
-            requeridas.
-            Métrica para analizar el costo de la solución (cantidad de estados generados)
-        */
+        if (resultadoGreedy != null) {
+            System.out.println("\n╔══════════════════════════════════════════════╗");
+            System.out.println("║    Mejor secuencia encontrada con Greedy     ║");
+            System.out.println("╚══════════════════════════════════════════════╝");
+
+            System.out.print("Secuencia: ");
+            System.out.print("[ ");
+            for (int i = 0; i < resultadoGreedy.size(); i++) {
+                System.out.print(resultadoGreedy.get(i));
+                if (i < resultadoGreedy.size() - 1) {
+                    System.out.print(" -> ");
+                }
+            }
+            System.out.println(" ]");
+
+            System.out.println("Métricas:");
+            System.out.println("  - Cantidad de candidatos considerados: " + sGreedy.getCantidadCandidatos());
+            System.out.println("  - Cantidad de piezas producidas: " + piezasTotales);
+            System.out.println("  - Cantidad de puestas en funcionamiento: " + resultadoGreedy.size());
+        } else {
+            System.out.println("\nX No se encontró una combinación válida para Greedy.");
+        }
+
     }
 
 }
-
